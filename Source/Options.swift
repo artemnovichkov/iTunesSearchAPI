@@ -17,6 +17,9 @@ public struct Options {
   /// The number of search results you want the iTunes Store to return. The default is 50. The minimum is 1, the maximum 200.
   public let limit: Int?
   
+  /// The number of search results you want to search from.
+  public let offset: Int?
+  
   /// The language, English or Japanese, you want to use when returning search results. The default is en_us (English).
   public let language: Language?
   
@@ -25,9 +28,10 @@ public struct Options {
   
   // MARK: - Init
   
-  public init(country: Country? = nil, limit: Int? = nil, language: Language? = nil, includeExplicitContent: Bool? = nil) {
+  public init(country: Country? = nil, limit: Int? = nil, offset: Int? = nil, language: Language? = nil, includeExplicitContent: Bool? = nil) {
     self.country  = country
     self.limit    = limit
+    self.offset   = offset
     self.language = language
     self.includeExplicitContent = includeExplicitContent
   }
@@ -43,6 +47,10 @@ extension Options {
     
     if let limit = limit {
       param["limit"] = String(limit)
+    }
+    
+    if let offset = offset {
+        param["offset"] = String(offset)
     }
     
     if let language = language {
