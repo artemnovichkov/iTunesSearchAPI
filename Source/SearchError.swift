@@ -17,3 +17,13 @@ public enum SearchError: Error {
     case invalidJSON
     case error(Error)
 }
+
+extension SearchError: LocalizedError {
+    
+    public var errorDescription: String? {
+        switch self {
+        case .error(let error): return error.localizedDescription
+        default: return localizedDescription
+        }
+    }
+}
