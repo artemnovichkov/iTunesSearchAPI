@@ -15,4 +15,5 @@ public enum SearchError: Error {
     case invalidServerResponse
     case serverError(Int)
     case invalidJSON
+    case error(Error)
 }

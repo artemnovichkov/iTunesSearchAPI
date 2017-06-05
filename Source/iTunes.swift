@@ -101,6 +101,13 @@ public final class iTunes {
     private func buildTask(withURL url: URL, completion: @escaping (NetworkResponse) -> Void) -> URLSessionDataTask {
         return session.dataTask(with: url) { data, response, error in
             
+            if let error = error {
+                DispatchQueue.main.async {
+                    completion(.failure(.error(error)))
+                }
+                return
+            }
+            
             guard let httpResponse = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
                     completion(.failure(.invalidServerResponse))
