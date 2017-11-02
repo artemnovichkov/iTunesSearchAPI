@@ -14,7 +14,7 @@ public enum SearchError: Error {
     case invalidURL
     case invalidServerResponse
     case serverError(Int)
-    case invalidJSON
+    case missingData
     case error(Error)
 }
 

@@ -123,16 +123,16 @@ public final class iTunes {
                 return
             }
             
-            // try to decode the response json
-            guard let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) else {
+            // try to get the data
+            guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(.failure(.invalidJSON))
+                    completion(.failure(.missingData))
                 }
                 return
             }
             
             DispatchQueue.main.async {
-                completion(.success(json))
+                completion(.success(data))
             }
         }
     }
